@@ -1,0 +1,47 @@
+import { motion } from 'framer-motion';
+import { LucideIcon } from 'lucide-react';
+
+type ServiceCardProps = {
+  title: string;
+  description: string;
+  icon: LucideIcon;
+  color: string;
+  bgColor: string;
+  delay?: number;
+};
+
+const ServiceCard = ({
+  title,
+  description,
+  icon: Icon,
+  color,
+  bgColor,
+  delay = 0,
+}: ServiceCardProps) => {
+  return (
+    <motion.div
+      className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      whileHover={{ y: -4 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay }}
+    >
+      <div className="p-6">
+        <div className={`w-12 h-12 rounded-lg ${bgColor} flex items-center justify-center mb-4`}>
+          <Icon className={`w-6 h-6 ${color}`} />
+        </div>
+
+        <h3 className="text-xl font-semibold text-gray-900 mb-3">
+          {title}
+        </h3>
+
+        <p className="text-gray-700 leading-relaxed">
+          {description}
+        </p>
+      </div>
+    </motion.div>
+  );
+};
+
+export default ServiceCard;
